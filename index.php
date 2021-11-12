@@ -248,7 +248,7 @@
             100% {
                 border: 1px solid #07252d;
                 text-shadow: none;
-                box-shadow:none;
+                box-shadow: none;
             }
 
             50% {
@@ -383,30 +383,27 @@ if (isset($_GET['month'])) {
             echo "</tr>";
 
             $count = 1;
+            $lastMonth = (($month - 1) == 0) ? 12 : ($month - 1);
+            $startDiv = (date("w", strtotime($da)) == 0) ? 7 : date("w", strtotime($da));
             for ($i = 0; $i < 6; $i++) {
                 echo "<tr>";
                 for ($j = 0; $j < 7; $j++) {
                     echo "<td";
-                    if ((7 * $i + $j) < date("w", strtotime($da))) {
+                    if ((7 * $i + $j) < $startDiv) {
                         echo " class ='gray'> " . "<a href='index.php?year=" . $year . "&month=" . ($month - 1) . "'>";
-                        $lastMonth = (($month - 1) == 0) ? 12 : (date("n", strtotime($da)) - 1);
                         echo $lastMonth;
                         echo " / ";
-                        echo ($month_day[($lastMonth-1)] - date("w", strtotime($da)) + $j + 1);
+                        echo ($month_day[($lastMonth - 1)] - $startDiv + +7 * $i + $j + 1);
                         echo "</a>";
+                    } else if (($i * 7 + $j) >= $startDiv && ($i * 7 + $j) < $startDiv + $month_day[($month - 1)]) {
+                        echo " class= 'white'>" .  ($i * 7 + $j - $startDiv + 1);
                     } else {
-                        if (($i * 7 + $j - date("w", strtotime($da)) + 1) <= $month_day[(date("m", strtotime($da)) - 1)]) {
-
-                            echo " class= 'white'>" .  ($i * 7 + $j - date("w", strtotime($da)) + 1);
-                        } else {
-                            echo " class ='gray'>" . "<a href='index.php?year=" . $year . "&month=" . ($month + 1) . "'>";
-                            echo (((date("n", strtotime($da)) + 1) % 12) == 0) ? 12 : ((date("n", strtotime($da)) + 1) % 12);
-                            echo " / " . $count . "</a>";
-                            $count++;
-                        }
+                        echo " class ='gray'>" . "<a href='index.php?year=" . $year . "&month=" . ($month + 1) . "'>";
+                        echo (($month + 1) == 13) ? 1 : $month + 1;
+                        echo " / " . $count . "</a>";
+                        $count++;
                     }
-
-
+                    
                     echo "</td>";
                 }
                 echo "</tr>";
