@@ -389,10 +389,10 @@ if (isset($_GET['month'])) {
                     echo "<td";
                     if ((7 * $i + $j) < date("w", strtotime($da))) {
                         echo " class ='gray'> " . "<a href='index.php?year=" . $year . "&month=" . ($month - 1) . "'>";
-
-                        echo ((date("n", strtotime($da)) - 1) == 0) ? 12 : (date("n", strtotime($da)) - 1);
+                        $lastMonth = (($month - 1) == 0) ? 12 : (date("n", strtotime($da)) - 1);
+                        echo $lastMonth;
                         echo " / ";
-                        echo $month_day[(date("m", strtotime($da)) + 10) % 12] - date("w", strtotime($da)) + $j;
+                        echo ($month_day[($lastMonth-1)] - date("w", strtotime($da)) + $j + 1);
                         echo "</a>";
                     } else {
                         if (($i * 7 + $j - date("w", strtotime($da)) + 1) <= $month_day[(date("m", strtotime($da)) - 1)]) {
