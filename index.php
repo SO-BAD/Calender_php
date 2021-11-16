@@ -30,7 +30,7 @@
 
         main {
             width: 800px;
-            margin: 120px auto;
+            margin: 50px auto;
             background-color: #07252d;
             display: flex;
             flex-wrap: wrap;
@@ -101,7 +101,7 @@
             width: 45px;
             height: 5px;
             position: absolute;
-            top: calc(380px + 228px + 70px);
+            top: calc(380px + 228px );
             margin-left: 80px;
             transform-origin: 5px 3px;
             background-color: rgb(49, 49, 49);
@@ -114,7 +114,7 @@
             width: 70px;
             height: 5px;
             position: absolute;
-            top: calc(380px + 228px + 70px);
+            top: calc(380px + 228px );
             margin-left: 77px;
             transform-origin: 8px 3px;
             background-color: rgb(155, 154, 154);
@@ -127,7 +127,7 @@
             width: 90px;
             height: 3px;
             position: absolute;
-            top: calc(380px + 229px + 70px);
+            top: calc(380px + 229px );
             margin-left: 75px;
             transform-origin: 10px 2px;
             background-color: rgb(122, 122, 122);
@@ -314,10 +314,7 @@ if (isset($_GET['month'])) {
 
 
 
-<body>
-    <?php
-        include "./nav.php";
-    ?>
+<body>    
     <main>
         <header>
             <span style="--i:1;">P</span>
