@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perpetual Calendar</title>
+    <link rel="stylesheet" href="all.css">
     <style>
         * {
             box-sizing: border-box;
             font-family: arial;
-            color: #0e3742;
             text-align: center;
             font-weight: bolder;
         }
@@ -30,14 +30,14 @@
 
         main {
             width: 800px;
-            margin: 50px auto;
+            margin: 120px auto;
             background-color: #07252d;
             display: flex;
             flex-wrap: wrap;
             border-radius: 20px;
             box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3),
-            5px 5px 10px rgba(0, 0, 0, 0.3),
-            5px 5px 20px rgba(0, 0, 0, 0.3);
+                5px 5px 10px rgba(0, 0, 0, 0.3),
+                5px 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         header {
@@ -101,7 +101,7 @@
             width: 45px;
             height: 5px;
             position: absolute;
-            top: calc(380px + 228px );
+            top: calc(380px + 228px + 70px);
             margin-left: 80px;
             transform-origin: 5px 3px;
             background-color: rgb(49, 49, 49);
@@ -114,7 +114,7 @@
             width: 70px;
             height: 5px;
             position: absolute;
-            top: calc(380px + 228px );
+            top: calc(380px + 228px + 70px);
             margin-left: 77px;
             transform-origin: 8px 3px;
             background-color: rgb(155, 154, 154);
@@ -127,7 +127,7 @@
             width: 90px;
             height: 3px;
             position: absolute;
-            top: calc(380px + 229px );
+            top: calc(380px + 229px + 70px);
             margin-left: 75px;
             transform-origin: 10px 2px;
             background-color: rgb(122, 122, 122);
@@ -158,6 +158,7 @@
             font-size: 18px;
             text-decoration: none;
             transition: 1s;
+            color: #0e3742;
         }
 
         .link:hover {
@@ -266,6 +267,36 @@
                     0 0 5px #03bcf4;
             }
         }
+
+        @keyframes oo {
+
+            0%,
+            100% {
+                text-shadow: none;
+            }
+
+            50% {
+                text-shadow: 0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4;
+            }
+        }
+
+        .menu a:nth-child(1) {
+            color:white;
+            text-shadow: 0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4,
+                    0 0 5px #03bcf4;
+        }
+
+        .menu a:nth-child(2) {
+            color: #0e3742;
+        }
+        .menu a:nth-child(2):hover {
+            animation: oo 1.8s linear infinite;
+        }
     </style>
 
     <script>
@@ -293,7 +324,7 @@
 
 <?php
 date_default_timezone_set('Asia/Taipei');
-if (isset($_GET['month'])) {
+if (isset($_GET['month']) && $_GET['year'] > 0) {
     $year =  $_GET['year'];
     $month = $_GET['month'];
     if ($month == 13) {
@@ -314,7 +345,10 @@ if (isset($_GET['month'])) {
 
 
 
-<body>    
+<body>
+    <?php
+    include "nav.php";
+    ?>
     <main>
         <header>
             <span style="--i:1;">P</span>
@@ -406,7 +440,7 @@ if (isset($_GET['month'])) {
                         echo " / " . $count . "</a>";
                         $count++;
                     }
-                    
+
                     echo "</td>";
                 }
                 echo "</tr>";
